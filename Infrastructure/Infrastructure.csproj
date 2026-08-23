@@ -7,9 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Adapters\In\" />
-    <Folder Include="Adapters\" />
-    <Folder Include="Adapters\Out\" />
+    <Folder Include="Adapters\In\Rest\" />
+    <Folder Include="Adapters\Out\Persistence\" />
   </ItemGroup>
 
 </Project>

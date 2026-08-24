@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Adapters\In\" />
-    <Folder Include="Adapters\Outs\" />
   </ItemGroup>
 
   <ItemGroup>

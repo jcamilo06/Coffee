@@ -10,5 +10,6 @@ namespace Application.Ports.Outs.Interfaces
     public interface IBrewingMethodPort
     {
         BrewingMethod GetById(int brewingMethodId);
+        List<BrewingMethod> GetAll();
     }
 }

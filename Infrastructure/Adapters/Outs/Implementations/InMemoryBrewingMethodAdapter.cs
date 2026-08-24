@@ -28,5 +28,10 @@ namespace Infrastructure.Adapters.Outs.Implementations
                 throw new BusinessException($"No existe el método de preparación con id {brewingMethodId}.");
             return method;
         }
+
+        public List<BrewingMethod> GetAll()
+        {
+            return _methods.Values.ToList();
+        }
     }
 }

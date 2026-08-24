@@ -20,6 +20,7 @@ namespace API
             builder.Services.AddSingleton<IBrewingMethodPort, InMemoryBrewingMethodAdapter>();
             builder.Services.AddSingleton<IOrderRepositoryPort, InMemoryOrderAdapter>();
             builder.Services.AddScoped<ICoffeeBeanQueryUseCase, CoffeeBeanQueryUseCase>();
+            builder.Services.AddScoped<IBrewingMethodQueryUseCase, BrewingMethodQueryUseCase>();
 
             var app = builder.Build();
 

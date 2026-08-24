@@ -1,7 +1,9 @@
 ﻿using Application.Ports.Outs.Interfaces;
+using Domain.Exceptions;
 using Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +27,13 @@ namespace Infrastructure.Adapters.Outs.Implementations
 
             _orders[orderToSave.Id] = orderToSave;
             return orderToSave;
+        }
+
+        public Order GetOrder(int orderId)
+        {
+            if (!_orders.TryGetValue(orderId, out var order))
+                throw new BusinessException($"No existe la orden con id {orderId}.");
+            return order;
         }
     }
 }

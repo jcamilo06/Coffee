@@ -19,6 +19,7 @@ namespace API
             builder.Services.AddSingleton<ICoffeeBeanPort, InMemoryCoffeeBeanAdapter>();
             builder.Services.AddSingleton<IBrewingMethodPort, InMemoryBrewingMethodAdapter>();
             builder.Services.AddSingleton<IOrderRepositoryPort, InMemoryOrderAdapter>();
+            builder.Services.AddScoped<IProcessCoffeeOrderUseCase, ProcessCoffeeOrderUseCase>();
             builder.Services.AddScoped<ICoffeeBeanQueryUseCase, CoffeeBeanQueryUseCase>();
             builder.Services.AddScoped<IBrewingMethodQueryUseCase, BrewingMethodQueryUseCase>();
 

@@ -27,6 +27,13 @@ namespace API.Controllers
             return Ok(order);
         }
 
+        [HttpGet("{orderId}")]
+        public IActionResult GetById(int orderId)
+        {
+            var order = _useCase.GetOrderById(orderId);
+            return Ok(order);
+        }
+
         [HttpGet("availability")]
         public IActionResult CheckAvailability([FromQuery] int coffeeBeanId, [FromQuery] decimal grams)
         {

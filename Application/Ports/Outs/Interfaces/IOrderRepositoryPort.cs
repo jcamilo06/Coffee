@@ -10,5 +10,6 @@ namespace Application.Ports.Outs.Interfaces
     public interface IOrderRepositoryPort
     {
         Order Save(Order order);
+        Order GetOrder(int orderId);
     }
 }

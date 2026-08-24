@@ -56,5 +56,10 @@ namespace Application.Ports.In.UsesCases
             // Guardar la orden y devolverla
             return _orderRepositoryPort.Save(order);
         }
+
+        public Order GetOrderById(int orderId)
+        {
+            return _orderRepositoryPort.GetOrder(orderId);
+        }
     }
 }

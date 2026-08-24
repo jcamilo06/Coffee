@@ -11,5 +11,6 @@ namespace Application.Ports.In.Interfaces
     {
         bool CheckAvailability(int coffeeBeanId, decimal grams);
         Order ProcessOrder(string customerName, decimal grams, int coffeeBeanId, int brewingMethodId);
+        Order GetOrderById(int orderId);
     }
 }

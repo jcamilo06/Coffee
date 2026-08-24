@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Adapters\In\Rest\" />
-    <Folder Include="Adapters\Out\Persistence\" />
+    <Folder Include="Adapters\In\" />
+    <Folder Include="Adapters\Out\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
   </ItemGroup>
 
 </Project>

@@ -13,24 +13,28 @@ namespace Domain.Models
         public string CustomerName { get; init; }
         public decimal Grams { get; init; }
         public DateTime Date { get; init; }
+        public decimal TotalPrice { get; init; }
         public int CoffeeBeanId { get; init; }
         public int BrewingMethodId { get; init; }
 
-        public Order(int id, string customerName, decimal grams, int coffeeBeanId, int brewingMethodId)
+        public Order(int id, string customerName, decimal grams, decimal totalPrice, int coffeeBeanId, int brewingMethodId)
         {
             if (string.IsNullOrWhiteSpace(customerName))
                 throw new BusinessException("El nombre del cliente es obligatorio.");
             if (grams <= 0)
                 throw new BusinessException("La cantidad en gramos debe ser positiva.");
+            if (totalPrice <= 0)
+                throw new BusinessException("El precio total debe ser positivo.");
             if (coffeeBeanId <= 0)
-                throw new BusinessException("El id del tipo de café debe ser positivo");
+                throw new BusinessException("El id del tipo de café debe ser positivo.");
             if (brewingMethodId <= 0)
-                throw new BusinessException("El id del método de preparación debe ser positivo");
+                throw new BusinessException("El id del método de preparación debe ser positivo.");
 
             Id = id;
             CustomerName = customerName;
             Grams = grams;
             Date = DateTime.UtcNow;
+            TotalPrice = totalPrice;
             CoffeeBeanId = coffeeBeanId;
             BrewingMethodId = brewingMethodId;
         }

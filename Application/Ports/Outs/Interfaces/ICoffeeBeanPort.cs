@@ -11,5 +11,6 @@ namespace Application.Ports.Outs.Interfaces
     {
         CoffeeBean GetById(int coffeeBeanId);
         void Update(CoffeeBean coffeeBean);
+        List<CoffeeBean> GetAll();
     }
 }

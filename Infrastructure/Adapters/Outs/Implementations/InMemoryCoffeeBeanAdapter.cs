@@ -28,5 +28,10 @@ namespace Infrastructure.Adapters.Outs.Implementations
         }
 
         public void Update(CoffeeBean coffeeBean) => _beans[coffeeBean.Id] = coffeeBean;
+
+        public List<CoffeeBean> GetAll()
+        {
+            return _beans.Values.ToList();
+        }
     }
 }

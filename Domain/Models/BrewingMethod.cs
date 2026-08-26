@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class BrewingMethod
+    public record BrewingMethod
     {
         public int Id { get; init; }
         public string Name { get; init; }
         public decimal Cost { get; init; }
-
-        private BrewingMethod() { }
 
         public BrewingMethod(int id, string name, decimal cost)
         {

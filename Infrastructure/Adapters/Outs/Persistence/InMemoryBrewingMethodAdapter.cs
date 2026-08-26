@@ -1,6 +1,7 @@
 ﻿using Application.Ports.Outs;
 using Domain.Exceptions;
 using Domain.Models;
+using Infrastructure.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,27 +12,26 @@ namespace Infrastructure.Adapters.Outs.Persistence
 {
     public class InMemoryBrewingMethodAdapter : IBrewingMethodPort
     {
-        private readonly Dictionary<int, BrewingMethod> _methods = new();
+        private readonly InMemoryBrewingMethodRepository _repository;
 
-        public InMemoryBrewingMethodAdapter()
+        public InMemoryBrewingMethodAdapter(InMemoryBrewingMethodRepository repository)
         {
-            _methods[1] = new BrewingMethod(1, "V60", 3000m);
-            _methods[2] = new BrewingMethod(2, "Chemex", 3500m);
-            _methods[3] = new BrewingMethod(3, "Espresso", 5000m);
-            _methods[4] = new BrewingMethod(4, "Prensa Francesa", 2500m);
-            _methods[5] = new BrewingMethod(5, "Aeropress", 3000m);
+            _repository = repository;
         }
 
         public BrewingMethod GetById(int brewingMethodId)
         {
-            if (!_methods.TryGetValue(brewingMethodId, out var method))
+            var entity = _repository.FindById(brewingMethodId);
+            if (entity is null)
                 throw new BusinessException($"No existe el método de preparación con id {brewingMethodId}.");
-            return method;
+            return BrewingMethodMapper.ToDomain(entity);
         }
 
         public List<BrewingMethod> GetAll()
         {
-            return _methods.Values.ToList();
+            return _repository.FindAll()
+                .Select(BrewingMethodMapper.ToDomain)
+                .ToList();
         }
     }
 }

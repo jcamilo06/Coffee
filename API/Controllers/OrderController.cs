@@ -33,12 +33,5 @@ namespace API.Controllers
             var order = _useCase.GetOrderById(orderId);
             return Ok(order);
         }
-
-        [HttpGet("availability")]
-        public IActionResult CheckAvailability([FromQuery] int coffeeBeanId, [FromQuery] decimal grams)
-        {
-            var available = _useCase.CheckAvailability(coffeeBeanId, grams);
-            return Ok(new { Available = available });
-        }
     }
 }

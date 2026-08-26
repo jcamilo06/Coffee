@@ -10,5 +10,6 @@ namespace Application.Ports.In
     public interface ICoffeeBeanQueryUseCase
     {
         List<CoffeeBean> GetAllCoffeeBeans();
+        bool CheckAvailability(int coffeeBeanId, decimal grams);
     }
 }

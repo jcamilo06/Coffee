@@ -19,5 +19,11 @@ namespace Application.UsesCases
         }
 
         public List<CoffeeBean> GetAllCoffeeBeans() => _coffeeBeanPort.GetAll();
+
+        public bool CheckAvailability(int coffeeBeanId, decimal grams)
+        {
+            var coffeeBean = _coffeeBeanPort.GetById(coffeeBeanId);
+            return coffeeBean.HasEnoughStock(grams);
+        }
     }
 }

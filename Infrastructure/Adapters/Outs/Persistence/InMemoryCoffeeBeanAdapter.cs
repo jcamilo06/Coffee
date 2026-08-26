@@ -1,6 +1,7 @@
 ﻿using Application.Ports.Outs;
 using Domain.Exceptions;
 using Domain.Models;
+using Infrastructure.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,27 +12,30 @@ namespace Infrastructure.Adapters.Outs.Persistence
 {
     public class InMemoryCoffeeBeanAdapter : ICoffeeBeanPort
     {
-        private readonly Dictionary<int, CoffeeBean> _beans = new();
+        private readonly InMemoryCoffeeBeanRepository _repository;
 
-        public InMemoryCoffeeBeanAdapter()
+        public InMemoryCoffeeBeanAdapter(InMemoryCoffeeBeanRepository repository)
         {
-            // Datos semilla para poder probar sin montar otro endpoint de "crear grano"
-            _beans[1] = new CoffeeBean(1, "Geisha", 25000m, 5000m);
-            _beans[2] = new CoffeeBean(2, "Bourbon Rosado", 18000m, 3000m);
+            _repository = repository;
         }
 
         public CoffeeBean GetById(int coffeeBeanId)
         {
-            if (!_beans.TryGetValue(coffeeBeanId, out var bean))
+            var entity = _repository.FindById(coffeeBeanId);
+            if (entity is null)
                 throw new BusinessException($"No existe el grano con id {coffeeBeanId}.");
-            return bean;
+            return CoffeeBeanMapper.ToDomain(entity);
         }
 
-        public void Update(CoffeeBean coffeeBean) => _beans[coffeeBean.Id] = coffeeBean;
+        public void Update(CoffeeBean coffeeBean)
+        {
+            var entity = CoffeeBeanMapper.ToEntity(coffeeBean);
+            _repository.Save(entity);
+        }
 
         public List<CoffeeBean> GetAll()
         {
-            return _beans.Values.ToList();
+            return _repository.FindAll().Select(CoffeeBeanMapper.ToDomain).ToList();
         }
     }
 }

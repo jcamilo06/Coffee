@@ -25,12 +25,6 @@ namespace Application.UsesCases
             _orderRepositoryPort = orderRepositoryPort;
         }
 
-        public bool CheckAvailability(int coffeeBeanId, decimal grams)
-        {
-            var coffeeBean = _coffeeBeanPort.GetById(coffeeBeanId);
-            return coffeeBean.HasEnoughStock(grams);
-        }
-
         public Order ProcessOrder(string customerName, decimal grams, int coffeeBeanId, int brewingMethodId)
         {
             // Obtener el grano y el método de preparación
@@ -38,17 +32,18 @@ namespace Application.UsesCases
             var brewingMethod = _brewingMethodPort.GetById(brewingMethodId);
 
             // Descontar los gramos pedidos en la orden
-            coffeeBean.DecreaseStock(grams);
-            _coffeeBeanPort.Update(coffeeBean);
+            var updatedCoffeeBean = coffeeBean.DecreaseStock(grams);
+            _coffeeBeanPort.Update(updatedCoffeeBean);
 
             // Calcular el precio total
-            decimal totalPrice = coffeeBean.Price + brewingMethod.Cost;
+            decimal totalPrice = updatedCoffeeBean.Price + brewingMethod.Cost;
 
             // Construir la orden
             var order = new Order(
                 id: 0, // El repositorio asigna el id real al guardar
                 customerName: customerName,
                 grams: grams,
+                date: DateTime.UtcNow,
                 totalPrice: totalPrice,
                 coffeeBeanId: coffeeBeanId,
                 brewingMethodId: brewingMethodId);

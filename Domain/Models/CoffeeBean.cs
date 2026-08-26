@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class CoffeeBean
+    public record CoffeeBean
     {
         public int Id { get; init; }
         public string Name { get; init; }
         public decimal Price { get; init; }
-        public decimal GramsStock { get; private set; }
+        public decimal GramsStock { get; init; }
 
         public CoffeeBean(int id, string name, decimal price, decimal gramsStock)
         {
@@ -31,12 +31,12 @@ namespace Domain.Models
 
         public bool HasEnoughStock(decimal grams) => GramsStock >= grams;
 
-        public void DecreaseStock(decimal grams)
+        public CoffeeBean DecreaseStock(decimal grams)
         {
             if (!HasEnoughStock(grams))
                 throw new BusinessException($"Inventario insuficiente de {Name}.");
 
-            GramsStock -= grams;
+            return this with { GramsStock = GramsStock - grams };
         }
     }
 }

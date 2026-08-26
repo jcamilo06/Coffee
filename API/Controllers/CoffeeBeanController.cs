@@ -1,5 +1,4 @@
 ﻿using Application.Ports.In;
-using Application.Ports.Outs.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -19,6 +18,13 @@ namespace API.Controllers
         {
             var beans = _useCase.GetAllCoffeeBeans();
             return Ok(beans);
+        }
+
+        [HttpGet("availability")]
+        public IActionResult CheckAvailability([FromQuery] int coffeeBeanId, [FromQuery] decimal grams)
+        {
+            var available = _useCase.CheckAvailability(coffeeBeanId, grams);
+            return Ok(new { Available = available });
         }
     }
 }

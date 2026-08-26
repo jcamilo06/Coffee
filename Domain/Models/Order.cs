@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class Order
+    public record Order
     {
         public int Id { get; init; }
         public string CustomerName { get; init; }
@@ -17,12 +17,16 @@ namespace Domain.Models
         public int CoffeeBeanId { get; init; }
         public int BrewingMethodId { get; init; }
 
-        public Order(int id, string customerName, decimal grams, decimal totalPrice, int coffeeBeanId, int brewingMethodId)
+        public Order(int id, string customerName, decimal grams, DateTime date, decimal totalPrice, int coffeeBeanId, int brewingMethodId)
         {
             if (string.IsNullOrWhiteSpace(customerName))
                 throw new BusinessException("El nombre del cliente es obligatorio.");
             if (grams <= 0)
                 throw new BusinessException("La cantidad en gramos debe ser positiva.");
+            if (date == default)
+                throw new BusinessException("La fecha es obligatoria.");
+            if (date > DateTime.Now)
+                throw new BusinessException("La fecha no puede ser futura.");
             if (totalPrice <= 0)
                 throw new BusinessException("El precio total debe ser positivo.");
             if (coffeeBeanId <= 0)
@@ -33,7 +37,7 @@ namespace Domain.Models
             Id = id;
             CustomerName = customerName;
             Grams = grams;
-            Date = DateTime.UtcNow;
+            Date = date;
             TotalPrice = totalPrice;
             CoffeeBeanId = coffeeBeanId;
             BrewingMethodId = brewingMethodId;

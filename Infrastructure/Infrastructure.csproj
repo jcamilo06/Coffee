@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Adapters\In\" />
-    <Folder Include="Mappers\" />
     <Folder Include="Config\" />
   </ItemGroup>
 

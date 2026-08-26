@@ -1,7 +1,6 @@
 using API.Middleware;
-using Application.Ports.In;
-using Application.Ports.Outs;
-using Application.UsesCases;
+using Infrastructure.Config;
+using Infrastructure.Adapters.In;
 using Infrastructure.Adapters.Outs.Persistence;
 
 namespace API
@@ -13,15 +12,8 @@ namespace API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllers();
-
-            // Registro de dependencias de la arquitectura hexagonal
-            builder.Services.AddSingleton<ICoffeeBeanPort, InMemoryCoffeeBeanAdapter>();
-            builder.Services.AddSingleton<IBrewingMethodPort, InMemoryBrewingMethodAdapter>();
-            builder.Services.AddSingleton<IOrderRepositoryPort, InMemoryOrderAdapter>();
-            builder.Services.AddScoped<IProcessCoffeeOrderUseCase, ProcessCoffeeOrderUseCase>();
-            builder.Services.AddScoped<ICoffeeBeanQueryUseCase, CoffeeBeanQueryUseCase>();
-            builder.Services.AddScoped<IBrewingMethodQueryUseCase, BrewingMethodQueryUseCase>();
+            builder.Services.AddInfrastructure();
+            builder.Services.AddControllers().AddApplicationPart(typeof(OrderController).Assembly);
 
             var app = builder.Build();
 

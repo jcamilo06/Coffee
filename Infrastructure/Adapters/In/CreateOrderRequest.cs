@@ -1,4 +1,4 @@
-﻿namespace API.DTOs
+﻿namespace Infrastructure.Adapters.In
 {
     public class CreateOrderRequest
     {

@@ -1,8 +1,8 @@
-﻿using API.DTOs;
-using Application.Ports.In;
+﻿using Application.Ports.In;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.InteropServices;
 
-namespace API.Controllers
+namespace Infrastructure.Adapters.In
 {
     [ApiController]
     [Route("api/v1/[controller]")]
@@ -18,12 +18,7 @@ namespace API.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] CreateOrderRequest request)
         {
-            var order = _useCase.ProcessOrder(
-                request.CustomerName,
-                request.Grams,
-                request.CoffeeBeanId,
-                request.BrewingMethodId);
-
+            var order = _useCase.ProcessOrder(request.CustomerName, request.Grams, request.CoffeeBeanId, request.BrewingMethodId);
             return Ok(order);
         }
 

@@ -1,7 +1,7 @@
 ﻿using Application.Ports.In;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers
+namespace Infrastructure.Adapters.In
 {
     [ApiController]
     [Route("api/v1/[controller]")]

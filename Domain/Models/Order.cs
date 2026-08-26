@@ -25,8 +25,6 @@ namespace Domain.Models
                 throw new BusinessException("La cantidad en gramos debe ser positiva.");
             if (date == default)
                 throw new BusinessException("La fecha es obligatoria.");
-            if (date > DateTime.Now)
-                throw new BusinessException("La fecha no puede ser futura.");
             if (totalPrice <= 0)
                 throw new BusinessException("El precio total debe ser positivo.");
             if (coffeeBeanId <= 0)

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Ports.Outs.Interfaces
+namespace Application.Ports.Outs
 {
     public interface ICoffeeBeanPort
     {

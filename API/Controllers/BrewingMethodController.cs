@@ -1,4 +1,4 @@
-﻿using Application.Ports.In.Interfaces;
+﻿using Application.Ports.In;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers

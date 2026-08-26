@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Ports.In.Interfaces
+namespace Application.Ports.In
 {
-    public interface IBrewingMethodQueryUseCase
+    public interface ICoffeeBeanQueryUseCase
     {
-        List<BrewingMethod> GetAllBrewingMethods();
+        List<CoffeeBean> GetAllCoffeeBeans();
     }
 }

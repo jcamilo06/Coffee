@@ -1,4 +1,4 @@
-﻿using Application.Ports.Outs.Interfaces;
+﻿using Application.Ports.Outs;
 using Domain.Exceptions;
 using Domain.Models;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Adapters.Outs.Implementations
+namespace Infrastructure.Adapters.Outs.Persistence
 {
     public class InMemoryCoffeeBeanAdapter : ICoffeeBeanPort
     {

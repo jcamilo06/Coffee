@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Ports.In.Interfaces
+namespace Application.Ports.In
 {
     public interface IProcessCoffeeOrderUseCase
     {

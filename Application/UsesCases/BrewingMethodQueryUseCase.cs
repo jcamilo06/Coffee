@@ -1,5 +1,5 @@
-﻿using Application.Ports.In.Interfaces;
-using Application.Ports.Outs.Interfaces;
+﻿using Application.Ports.In;
+using Application.Ports.Outs;
 using Domain.Models;
 using System;
 using System.Collections.Generic;

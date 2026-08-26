@@ -1,4 +1,4 @@
-﻿using Application.Ports.In.Interfaces;
+﻿using Application.Ports.In;
 using Application.Ports.Outs.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

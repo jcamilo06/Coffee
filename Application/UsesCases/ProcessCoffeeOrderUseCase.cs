@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Ports.In.UsesCases
+namespace Application.UsesCases
 {
     public class ProcessCoffeeOrderUseCase : IProcessCoffeeOrderUseCase
     {

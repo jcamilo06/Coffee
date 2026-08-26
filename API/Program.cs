@@ -1,7 +1,7 @@
 using API.Middleware;
 using Application.Ports.In.Interfaces;
-using Application.Ports.In.UsesCases;
 using Application.Ports.Outs.Interfaces;
+using Application.UsesCases;
 using Infrastructure.Adapters.Outs.Implementations;
 
 namespace API
